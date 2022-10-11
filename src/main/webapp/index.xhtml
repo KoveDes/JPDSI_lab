@@ -9,16 +9,19 @@
 </h:head>
 <h:body>
 
-	<h1>Kalkulator kredytowy</h1>
+	<h1>Kalkulator raty kredytu</h1>
  
-	<h:form id="bla">
-  		x: <h:inputText value="#{creditBB.x}" />
+	<h:form id="kove">
+  		Kwota: <h:inputText value="#{creditBB.amount}" />
 		<br />
-  		y: <h:inputText value="#{creditBB.y}" />
+  		Czas (w latach): <h:inputText value="#{creditBB.time}" />
+		<br />
+		Oprocentowanie (%): <h:inputText value="#{creditBB.rate}" />
 		<br />
 		<h:messages id="msg" />
-
-		<h:commandButton value="Dodaj" action="#{creditBB.calc()}"/>
+	
+	wynik: #{calcBB.result}
+		<h:commandButton value="Oblicz ratę miesięczną" action="#{creditBB.calc()}"/>
 		<br />
 	</h:form>
 
