@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
 	<title>Kredyt</title>
 </h:head>
@@ -12,16 +13,16 @@
 	<h1>Kalkulator raty kredytu</h1>
  
 	<h:form id="kove">
-  		Kwota: <h:inputText value="#{creditBB.amount}" />
+  		Kwota: <p:inputText value="#{creditBB.amount}" />
 		<br />
-  		Czas (w latach): <h:inputText value="#{creditBB.time}" />
+  		Czas (w latach): <p:inputText value="#{creditBB.time}" />
 		<br />
-		Oprocentowanie (%): <h:inputText value="#{creditBB.rate}" />
+		Oprocentowanie (%): <p:inputText value="#{creditBB.rate}" />
 		<br />
-		<h:messages id="msg" />
+		<p:messages id="msg" />
 	
 	wynik: #{calcBB.result}
-		<h:commandButton value="Oblicz ratę miesięczną" action="#{creditBB.calc()}"/>
+		<p:commandButton value="Oblicz ratę miesięczną" action="#{creditBB.calc()}"/>
 		<br />
 	</h:form>
 
