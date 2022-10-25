@@ -11,35 +11,35 @@ import javax.faces.context.FacesContext;
 @RequestScoped
 //@SessionScoped
 public class CreditBB {
-	private String amount;
-	private String time;
-	private String rate;
+	private Double amount;
+	private Double time;
+	private Double rate;
 	private Double result;
 	
 	@Inject
 	FacesContext ctx;
 
-	public String getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
 
-	public void setAmount(String amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
 
-	public String getTime() {
+	public Double getTime() {
 		return time;
 	}
 
-	public void setTime(String time) {
+	public void setTime(Double time) {
 		this.time = time;
 	}
 
-	public String getRate() {
+	public Double getRate() {
 		return rate;
 	}
 
-	public void setRate(String rate) {
+	public void setRate(Double rate) {
 		this.rate = rate;
 	}
 
@@ -54,9 +54,9 @@ public class CreditBB {
 	
 	public String calc() {
 		//konwersja
-		int amount = Integer.parseInt(this.amount);
-		int time = Integer.parseInt(this.time);
-		double rate = Double.parseDouble(this.rate);
+		double amount = this.amount;
+		double time = this.time;
+		double rate = this.rate;
 		// obliczenia
 		double n = time * 12;
 		double r = rate/100;

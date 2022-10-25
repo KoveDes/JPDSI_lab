@@ -9,32 +9,45 @@
 	<title>Kredyt</title>
 </h:head>
 <h:body>
-	<p:panel header="Kalkulator raty kredytu" toggleable="true" closable="false" toggleSpeed="2000">
+	<p:panel header="Kalkulator raty kredytu" toggleable="true"
+		closable="false" toggleSpeed="2000">
 
-	<h:form id="kove">
-		<h:panelGrid id="grid" rows="4" rowpadding="3"  cellpading="5">
-			<h:outputText for="amount" value="Kwota" />
-			<p:inputText value="#{creditBB.amount}" id="amount"
-				requiredMessage="Brak kwoty!" required="true" />
-			<p:message for="amount" />
+		<h:form id="kove">
+			<h:panelGrid id="grid" rows="4" rowpadding="3" cellpading="5">
+				<h:outputText for="amount" value="Kwota" />
+				<p:inputText value="#{creditBB.amount}" id="amount"
+					requiredMessage="Brak kwoty!" required="true"
+					converterMessage="Kwota musi być liczbą"
+					validatorMessage="Kwota kredytu musi być większa od 250zł">
+					<f:validateDoubleRange minimum="250" />
+				</p:inputText>
+				<p:message for="amount" />
 
-			<h:outputText for="time" value="Czas (w latach)" />
-			<p:inputText value="#{creditBB.time}" id="time" required="true"
-				requiredMessage="Nie podano czasu!" />
-			<p:message for="time" />
+				<h:outputText for="time" value="Czas (w latach)" />
+				<p:inputText value="#{creditBB.time}" id="time" required="true"
+					requiredMessage="Nie podano czasu!"
+					converterMessage="Czas musi być liczbą w latach"
+					validatorMessage="Kredyt musi być zaciągnięty na minimum 1 rok">
+					<f:validateDoubleRange minimum="1" />
+				</p:inputText>
+				<p:message for="time" />
 
-			<h:outputText for="rate" value="Oprocentowanie (%)" />
-			<p:inputText value="#{creditBB.rate}" id="rate" required="true"
-				requiredMessage="Podaj oprocentowanie!" />
-			<p:message for="rate" />
+				<h:outputText for="rate" value="Oprocentowanie (%)" />
+				<p:inputText value="#{creditBB.rate}" id="rate" required="true"
+					requiredMessage="Podaj oprocentowanie!"
+					converterMessage="Rata musi być liczbą"
+					validatorMessage="Oprocentowanie musi być większe od 0 i mniejsze od 30%. Jeśli udzielono ci kredytu z oprocentowaniem większym niż 30%, zgłoś się na policję.">
+					<f:validateDoubleRange minimum="0.000000000000000001" maximum = "30" />
+				</p:inputText>
+				<p:message for="rate" />
 			
 			
 		wynik: #{calcBB.result}
 		<p:commandButton value="Oblicz ratę miesięczną"
-				action="#{creditBB.calc()}" update="@form" />
-		</h:panelGrid>
-		<p:messages id="msg" />
-	</h:form>
-</p:panel>
+					action="#{creditBB.calc()}" update="@form" />
+			</h:panelGrid>
+			<p:messages id="msg" />
+		</h:form>
+	</p:panel>
 </h:body>
 </html>
