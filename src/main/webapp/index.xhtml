@@ -5,6 +5,60 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+
+
+<!-- Szablonowanie -->
+<ui:composition template='/templates/page-template.xhtml'>
+	<ui:define name="creditCalc">
+		<p:panel header="Kalkulator raty kredytu" toggleable="true"
+			closable="false" toggleSpeed="2000">
+
+			<h:form id="kove">
+				<h:panelGrid id="grid" rows="4" rowpadding="3" cellpading="5">
+					<h:outputText for="amount" value="Kwota" />
+					<p:inputText value="#{creditBB.amount}" id="amount"
+						requiredMessage="Brak kwoty!" required="true"
+						converterMessage="Kwota musi być liczbą"
+						validatorMessage="Kwota kredytu musi być większa od 250zł">
+						<f:validateDoubleRange minimum="250" />
+					</p:inputText>
+					<p:message for="amount" />
+
+					<h:outputText for="time" value="Czas (w latach)" />
+					<p:inputText value="#{creditBB.time}" id="time" required="true"
+						requiredMessage="Nie podano czasu!"
+						converterMessage="Czas musi być liczbą w latach"
+						validatorMessage="Kredyt musi być zaciągnięty na minimum 1 rok">
+						<f:validateDoubleRange minimum="1" />
+					</p:inputText>
+					<p:message for="time" />
+
+					<h:outputText for="rate" value="Oprocentowanie (%)" />
+					<p:inputText value="#{creditBB.rate}" id="rate" required="true"
+						requiredMessage="Podaj oprocentowanie!"
+						converterMessage="Rata musi być liczbą"
+						validatorMessage="Oprocentowanie musi być większe od 0 i mniejsze od 30%. Jeśli udzielono ci kredytu z oprocentowaniem większym niż 30%, zgłoś się na policję.">
+						<f:validateDoubleRange minimum="0.000000000000000001" maximum="30" />
+					</p:inputText>
+					<p:message for="rate" />
+			
+			
+		wynik: #{calcBB.result}
+		<p:commandButton value="Oblicz ratę miesięczną"
+						action="#{creditBB.calc()}" update="@form" />
+				</h:panelGrid>
+				<p:messages id="msg" />
+			</h:form>
+			<a target="_blank" href="https://icons8.com/icon/9dZyCrf02LRh/cat">Cat</a> icon by <a
+				target="_blank" href="https://icons8.com">Icons8</a>
+		</p:panel>
+	</ui:define>
+</ui:composition>
+
+<!-- Szablonowanie -->
+
+
+<!-- 
 <h:head>
 	<title>Kredyt</title>
 </h:head>
@@ -37,7 +91,7 @@
 					requiredMessage="Podaj oprocentowanie!"
 					converterMessage="Rata musi być liczbą"
 					validatorMessage="Oprocentowanie musi być większe od 0 i mniejsze od 30%. Jeśli udzielono ci kredytu z oprocentowaniem większym niż 30%, zgłoś się na policję.">
-					<f:validateDoubleRange minimum="0.000000000000000001" maximum = "30" />
+					<f:validateDoubleRange minimum="0.000000000000000001" maximum="30" />
 				</p:inputText>
 				<p:message for="rate" />
 			
@@ -48,6 +102,9 @@
 			</h:panelGrid>
 			<p:messages id="msg" />
 		</h:form>
+		<a target="_blank" href="https://icons8.com/icon/9dZyCrf02LRh/cat">Cat</a> icon by <a
+			target="_blank" href="https://icons8.com">Icons8</a>
 	</p:panel>
 </h:body>
+ -->
 </html>
